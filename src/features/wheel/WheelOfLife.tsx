@@ -97,7 +97,9 @@ export const WheelOfLife: React.FC<WheelOfLifeProps> = ({ currentLang, locale, o
 
       {phase === 'domain' && (
         <DomainStep
+          key={currentDomain}
           locale={locale}
+          isRtl={isRtl}
           domain={currentDomain}
           domainIndex={domainIndex}
           totalDomains={DOMAIN_KEYS.length}

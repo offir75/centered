@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './DomainStep.module.css';
 import type { Translations, WheelDomainKey } from '../../i18n';
 import { DOMAIN_ICONS, formatScore, getSufferingColor, type DomainScore } from './wheelOfLife.utils';
 
 interface DomainStepProps {
   locale: Translations;
+  isRtl: boolean;
   domain: WheelDomainKey;
   domainIndex: number;
   totalDomains: number;
@@ -18,6 +19,7 @@ interface DomainStepProps {
 
 export const DomainStep: React.FC<DomainStepProps> = ({
   locale,
+  isRtl,
   domain,
   domainIndex,
   totalDomains,
@@ -29,7 +31,9 @@ export const DomainStep: React.FC<DomainStepProps> = ({
   isLastStep,
 }) => {
   const t = locale.wheelOfLife;
+  const [showLongDescription, setShowLongDescription] = useState(false);
   const progressText = t.progress.replace('{current}', String(domainIndex + 1)).replace('{total}', String(totalDomains));
+  const description = t.domainDescriptions[domain];
 
   return (
     <section className={styles.screen}>
@@ -45,7 +49,17 @@ export const DomainStep: React.FC<DomainStepProps> = ({
 
       <div className={styles.domainIcon}>{DOMAIN_ICONS[domain]}</div>
       <h2 className={styles.domainTitle}>{t.domains[domain]}</h2>
-      <p className={styles.domainDescription}>{t.domainDescriptions[domain]}</p>
+      <p className={styles.domainDescription}>{description.short}</p>
+
+      <button
+        type="button"
+        className={styles.howToAnswerButton}
+        onClick={() => setShowLongDescription((v) => !v)}
+        aria-expanded={showLongDescription}
+      >
+        {t.howToAnswer}
+      </button>
+      {showLongDescription && <p className={styles.howToAnswerContent}>{description.long}</p>}
 
       <div className={styles.sliderCard}>
         <div className={styles.sliderHeader}>
@@ -82,11 +96,11 @@ export const DomainStep: React.FC<DomainStepProps> = ({
           step="0.5"
           value={score.suffering}
           onChange={(e) => onChangeSuffering(Number(e.target.value))}
-          className={`${styles.slider} ${styles.sliderSuffering}`}
+          className={`${styles.slider} ${isRtl ? styles['sliderSuffering--rtl'] : styles['sliderSuffering--ltr']}`}
           style={{ '--thumb-color': getSufferingColor(score.suffering) } as React.CSSProperties}
           aria-label={`${t.domains[domain]} - ${t.suffering.title}`}
         />
-        <div className={`${styles.sliderEdgeLabels} ${styles.sliderEdgeLabelsSuffering}`}>
+        <div className={styles.sliderEdgeLabels}>
           <span>{t.suffering.lowLabel}</span>
           <span>{t.suffering.highLabel}</span>
         </div>

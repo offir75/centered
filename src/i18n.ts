@@ -95,7 +95,8 @@ export type Translations = {
     };
     progress: string;
     domains: Record<WheelDomainKey, string>;
-    domainDescriptions: Record<WheelDomainKey, string>;
+    domainDescriptions: Record<WheelDomainKey, { short: string; long: string }>;
+    howToAnswer: string;
     time: {
       title: string;
       subtext: string;
@@ -206,21 +207,47 @@ export const translations: Record<Language, Translations> = {
         partnership: 'Romantic Partnership',
         body: 'Body & Health',
         leisure: 'Leisure & Hobbies',
-        externalWorld: 'External World',
+        externalWorld: 'Environment & Noise',
         finances: 'Finances',
         community: 'Community & Friends',
       },
       domainDescriptions: {
-        work: 'How does your career or work demands affect your energy and focus?',
-        family: 'How balanced do you feel in your role as a parent or family member?',
-        partnership: 'How centered do you feel in your romantic relationship?',
-        body: 'How connected and cared for does your body feel right now?',
-        leisure: 'How much room do you give yourself for rest, play, and hobbies?',
-        externalWorld:
-          'How much of your energy is absorbed by the environment around you? Consider your daily commute, traffic, and the impact of news and current events on your inner peace.',
-        finances: 'How much does money and financial security weigh on your mind?',
-        community: 'How supported do you feel by your friends and community?',
+        work: {
+          short: 'How much time and energy work demands from you, and how much it strains or burdens you.',
+          long: "If you have a job: how many hours a day do you put into it? Does it give you meaning, or do you wake up dreading it? If you're not currently working: how much of your day is consumed by the job search or worries around it, and how much suffering does that bring you?",
+        },
+        family: {
+          short:
+            'Your bond with your kids and your family of origin (parents/siblings) — time invested versus peace of mind.',
+          long: "If you have kids: how much time do you spend with them, and is there harmony in parenting or guilt and pressure? If you don't have kids: how much do longing for children, or your relationship with your own parents, drain your time and mental energy?",
+        },
+        partnership: {
+          short: 'Your intimate relationship — time invested versus emotional pain or peace.',
+          long: "If you're partnered: is the relationship an anchor of calm and love, or an arena for power struggles, drama, and loneliness-together? If you're single: how much time do you spend on dating, apps, or longing for love, and how much does that status hurt?",
+        },
+        body: {
+          short: 'How much time you give your physical body, and the quality of your relationship with it.',
+          long: 'This covers all the time you spend on your physical body: workouts, doctor appointments, healthy cooking, and grooming (hair, makeup, skincare). Do you feel at home in your body, or do you struggle with health anxiety, low body image, or emotional eating?',
+        },
+        leisure: {
+          short:
+            'Time set aside purely for enjoyment with no agenda, where your inner child gets permission to play.',
+          long: "The suffering here comes from having no leisure at all because of a never-ending to-do list, or from sharp guilt every time you try to rest and do 'nothing'. Do you let yourself simply enjoy things?",
+        },
+        externalWorld: {
+          short: 'The outside load: traffic, errands, news, and social media.',
+          long: "How much time and attention are drained by traffic, lines, and screens? How much does the 'world outside' — existential anxiety about the state of things, political tension, or urban chaos — disturb your inner peace?",
+        },
+        finances: {
+          short: 'Time spent managing or worrying about money, versus the peace of mind money allows (or takes away).',
+          long: 'Money is energy. How much time do you spend on budgeting, financial worries, or side gigs just to get by? Does your financial situation allow for flow and calm, or is it a steady source of survival anxiety and existential fear?',
+        },
+        community: {
+          short: 'Your social safety net — time spent with friends versus the energy it gives or takes.',
+          long: "How much time do you spend with friends or in community? Are you surrounded by people who recharge you (energy givers), or are you drained by social obligations, 'energy vampires', or a painful sense of isolation?",
+        },
       },
+      howToAnswer: 'How should I answer?',
       time: {
         title: 'Time & Energy Investment',
         subtext: '1 = Almost no time/energy spent, 10 = Consumes most of my waking hours/energy',
@@ -414,21 +441,45 @@ export const translations: Record<Language, Translations> = {
         partnership: 'זוגיות',
         body: 'גוף ובריאות',
         leisure: 'פנאי ותחביבים',
-        externalWorld: 'העולם שבחוץ',
-        finances: 'פיננסים',
+        externalWorld: 'הסביבה והעולם שבחוץ',
+        finances: 'כסף ופיננסים',
         community: 'קהילה וחברים',
       },
       domainDescriptions: {
-        work: 'איך הקריירה או דרישות העבודה משפיעות על האנרגיה והריכוז שלך?',
-        family: 'כמה מאוזן/ת את/ה מרגיש/ה בתפקיד שלך כהורה או כבן/בת משפחה?',
-        partnership: 'כמה מאוזן/ת את/ה מרגיש/ה בתוך הזוגיות שלך?',
-        body: 'כמה מחובר ומטופל הגוף שלך מרגיש כרגע?',
-        leisure: 'כמה מקום את/ה נותן/ת לעצמך למנוחה, למשחק ולתחביבים?',
-        externalWorld:
-          'כמה מהאנרגיה שלך נבלעת על ידי הסביבה שמסביבך? חשוב/י על הנסיעות היומיות, התנועה בדרכים, וההשפעה של חדשות ואירועים אקטואליים על השלווה הפנימית שלך.',
-        finances: 'כמה הכסף והביטחון הכלכלי מעיבים על המחשבות שלך?',
-        community: 'כמה את/ה מרגיש/ה נתמך/ת על ידי חברים והקהילה שלך?',
+        work: {
+          short: 'כמה זמן ואנרגיה העבודה דורשת מכם, ועד כמה המצב הזה מסב לכם מתח או סבל?',
+          long: 'אם יש לכם עבודה: כמה שעות אתם משקיעים בה ביום? האם היא מעניקה לכם משמעות, או שאתם קמים בבוקר במועקה? אם אתם לא עובדים כרגע: כמה מהיום שלכם נשאב לחיפוש עבודה או לדאגות סביב זה, ועד כמה המצב הזה מסב לכם סבל?',
+        },
+        family: {
+          short: 'הקשר עם הילדים שלכם ומשפחת המוצא (הורים/אחים) - זמן השקעה מול שקט נפשי.',
+          long: 'אם יש לכם ילדים: כמה זמן אתם משקיעים בהם, והאם יש בהורות הרמוניה או רגשות אשם ולחץ? אם אין לכם ילדים: עד כמה הכמיהה לילדים, או לחלופין הקשר עם ההורים שלכם, שואבים מכם זמן ואנרגיה נפשית?',
+        },
+        partnership: {
+          short: 'מערכת היחסים האינטימית שלכם. זמן השקעה מול כאב רגשי או שלווה.',
+          long: 'אם אתם בזוגיות: האם הקשר הוא עוגן של שקט ואהבה, או זירה למאבקי שליטה, דרמות ותחושת בדידות ביחד? אם אתם רווקים: כמה זמן אתם מקדישים לדייטים, אפליקציות או כמיהה לאהבה, ועד כמה הסטטוס הזה מסב לכם כאב?',
+        },
+        body: {
+          short: 'כמה זמן אתם מקדישים לגוף הפיזי שלכם, ומה טיב מערכת היחסים שלכם איתו?',
+          long: 'כאן נכלל כל הזמן שאתם משקיעים בגוף הפיזי: אימונים, תורים לרופאים, הכנת אוכל בריא, וטיפוח (שיער, איפור, קוסמטיקה). האם אתם מרגישים בנוח בעור שלכם, או סובלים מחרדות בריאות, דימוי גוף נמוך או אכילה רגשית?',
+        },
+        leisure: {
+          short: 'זמן שמיועד נטו להנאה נטולת מטרה, בו ה\'רגש\' (הילד הפנימי) מקבל אישור לשחק.',
+          long: 'הסבל כאן נובע ממצב שבו אין לכם פנאי בכלל בגלל מרוץ המטלות, או מתחושת אשמה קשה בכל פעם שאתם מנסים לנוח ולא לעשות \'כלום\'. האם אתם מרשים לעצמכם פשוט ליהנות?',
+        },
+        externalWorld: {
+          short: 'העומס החיצוני: פקקים, סידורים, חדשות ורשתות חברתיות.',
+          long: 'כמה זמן וקשב נגזלים מכם על ידי הפקקים, התורים והמסכים? עד כמה ה\'עולם שבחוץ\' – חרדה קיומית מהמצב, מתח פוליטי, או הכאוס העירוני – מפר את השקט הפנימי שלכם?',
+        },
+        finances: {
+          short: 'זמן המוקדש לניהול או דאגות כלכליות, לעומת השקט הנפשי שהכסף מאפשר (או לוקח).',
+          long: 'כסף הוא אנרגיה. כמה זמן אתם מקדישים לניהול תקציב, דאגות כלכליות, או עבודות צדדיות רק כדי לשרוד? האם המצב הכלכלי שלכם מאפשר זרימה ושקט, או שהוא מקור קבוע לחרדת הישרדות ופחד קיומי?',
+        },
+        community: {
+          short: 'רשת הביטחון החברתית שלכם. זמן המוקדש לחברים לעומת האנרגיה שזה נותן או לוקח.',
+          long: 'כמה זמן אתם מבלים עם חברים או בקהילה? האם אתם מוקפים באנשים שמטעינים אתכם (Energy Givers), או שאתם מרוקנים ממחויבויות חברתיות, \'שואבי אנרגיה\', או תחושה כואבת של בידוד?',
+        },
       },
+      howToAnswer: 'איך לענות?',
       time: {
         title: 'השקעת זמן ואנרגיה',
         subtext: '1 = כמעט ולא משקיע/ה זמן או אנרגיה, 10 = צורך את רוב שעות הערות והאנרגיה שלי',

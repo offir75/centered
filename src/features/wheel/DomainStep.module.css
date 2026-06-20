@@ -50,7 +50,32 @@
   color: #4a5568;
   line-height: 1.5;
   text-align: center;
-  margin: 0 0 0.5rem 0;
+  margin: 0;
+}
+
+.howToAnswerButton {
+  background: none;
+  border: none;
+  color: #6b46c1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem 0.5rem;
+  min-height: 36px;
+  text-decoration: underline;
+}
+
+.howToAnswerContent {
+  width: 100%;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem;
+  color: #4a5568;
+  line-height: 1.5;
+  text-align: start;
+  margin: 0 0 0.25rem 0;
 }
 
 .sliderCard {
@@ -110,22 +135,27 @@
 }
 
 .sliderTime {
-  background: linear-gradient(to right, #cbd5e0, #a0aec0);
+  background: linear-gradient(to right, #d6bcfa, #6b46c1);
 }
 
 .sliderTime::-webkit-slider-thumb {
-  background: #4a5568;
+  background: #553c9a;
 }
 
 .sliderTime::-moz-range-thumb {
-  background: #4a5568;
+  background: #553c9a;
 }
 
-.sliderSuffering {
-  /* Forced LTR regardless of page language so the green->red gradient and
-     edge labels stay physically left-to-right, matching the suffering scale spec. */
-  direction: ltr;
+/* Both sliders rely on the browser's native RTL mirroring of <input type="range">
+   (min anchors to the physical right, max to the left, when the ancestor is dir="rtl").
+   The suffering gradient is a physical background, so its direction must be flipped
+   explicitly to keep green glued to the "1" side and red to the "10" side either way. */
+.sliderSuffering--ltr {
   background: linear-gradient(to right, hsl(120, 70%, 45%), hsl(60, 70%, 45%), hsl(0, 70%, 45%));
+}
+
+.sliderSuffering--rtl {
+  background: linear-gradient(to left, hsl(120, 70%, 45%), hsl(60, 70%, 45%), hsl(0, 70%, 45%));
 }
 
 .slider::-webkit-slider-thumb {
@@ -154,12 +184,6 @@
   justify-content: space-between;
   font-size: 0.72rem;
   color: #718096;
-}
-
-.sliderEdgeLabelsSuffering {
-  /* Forced LTR to match the suffering track, which is also forced LTR so its
-     green (left, low) -> red (right, high) gradient stays physically fixed. */
-  direction: ltr;
 }
 
 .buttonGroup {
