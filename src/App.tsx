@@ -91,16 +91,7 @@ const App: React.FC = function() {
           onCancel={goHome}
         />
       ) : (
-        <WheelOfLife
-          currentLang={language}
-          locale={locale}
-          onSave={(data) => {
-            console.log('Wheel data saved:', data);
-            // TODO: Save wheel data and show analysis
-            goHome();
-          }}
-          onCancel={goHome}
-        />
+        <WheelOfLife currentLang={language} locale={locale} onFinish={goHome} onCancel={goHome} />
       )}
     </div>
   );

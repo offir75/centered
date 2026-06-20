@@ -2,6 +2,16 @@ export type Language = 'en' | 'he';
 
 type ElementKey = 'fire' | 'water' | 'air' | 'earth';
 
+export type WheelDomainKey =
+  | 'work'
+  | 'family'
+  | 'partnership'
+  | 'body'
+  | 'leisure'
+  | 'externalWorld'
+  | 'finances'
+  | 'community';
+
 type StepTranslation = {
   key: ElementKey;
   icon: string;
@@ -78,16 +88,41 @@ export type Translations = {
     finish: string;
   };
   wheelOfLife: {
-    title: string;
-    subtitle: string;
-    domains: Record<string, string>;
-    timeLabel: string;
-    distressLabel: string;
-    save: string;
-    smoothness: string;
-    smoothnessHigh: string;
-    smoothnessLow: string;
-    summary: string;
+    intro: {
+      title: string;
+      description: string;
+      cta: string;
+    };
+    progress: string;
+    domains: Record<WheelDomainKey, string>;
+    domainDescriptions: Record<WheelDomainKey, string>;
+    sliderQuestion: string;
+    sliderLowLabel: string;
+    sliderHighLabel: string;
+    back: string;
+    seeResults: string;
+    analysis: {
+      heading: string;
+      tier: {
+        low: string;
+        moderate: string;
+        high: string;
+      };
+      trend: {
+        improved: string;
+        declined: string;
+        same: string;
+        firstTime: string;
+      };
+      practiceHeading: string;
+      practiceIntro: string;
+      practices: {
+        notNow: { title: string; description: string };
+        breathing: { title: string; description: string };
+        headHeart: { title: string; description: string };
+      };
+      finish: string;
+    };
   };
   steps: StepTranslation[];
   results: ResultTranslation;
@@ -148,25 +183,73 @@ export const translations: Record<Language, Translations> = {
       finish: 'Return to Hub',
     },
     wheelOfLife: {
-      title: 'Wheel of Life',
-      subtitle: 'Rate your time investment and distress level in each life domain',
+      intro: {
+        title: 'Your Wheel of Life',
+        description:
+          "This is a tool for awareness, not judgment — there's no such thing as a perfect wheel. You'll rate 8 areas of your life one by one, then see where your energy is flowing and where it's stuck.",
+        cta: 'Begin',
+      },
+      progress: 'Domain {current}/{total}',
       domains: {
         work: 'Career & Work',
         family: 'Family & Parenting',
         partnership: 'Romantic Partnership',
         body: 'Body & Health',
         leisure: 'Leisure & Hobbies',
-        spirituality: 'Personal Growth',
+        externalWorld: 'External World',
         finances: 'Finances',
         community: 'Community & Friends',
       },
-      timeLabel: 'Time Investment',
-      distressLabel: 'Distress Level (1-10)',
-      save: 'See My Wheel',
-      smoothness: 'Life Balance: ',
-      smoothnessHigh: 'Smooth ride 🎯',
-      smoothnessLow: 'Bumpy ride ⚠️',
-      summary: 'Your wheel of life shows where energy is flowing and where it is stuck.',
+      domainDescriptions: {
+        work: 'How does your career or work demands affect your energy and focus?',
+        family: 'How balanced do you feel in your role as a parent or family member?',
+        partnership: 'How centered do you feel in your romantic relationship?',
+        body: 'How connected and cared for does your body feel right now?',
+        leisure: 'How much room do you give yourself for rest, play, and hobbies?',
+        externalWorld:
+          'How much of your energy is absorbed by the environment around you? Consider your daily commute, traffic, and the impact of news and current events on your inner peace.',
+        finances: 'How much does money and financial security weigh on your mind?',
+        community: 'How supported do you feel by your friends and community?',
+      },
+      sliderQuestion: 'Right now, how balanced do you feel in this area?',
+      sliderLowLabel: 'Off balance',
+      sliderHighLabel: 'Fully centered',
+      back: 'Back',
+      seeResults: 'See My Results',
+      analysis: {
+        heading: 'Your Balance Score',
+        tier: {
+          low: "There's real inner conflict pulling you from your center right now. A grounding practice can help bring you back.",
+          moderate: "You're aware of what's going on, but energy is leaking somewhere. Keep observing your patterns.",
+          high: "You're in a stable, centered place right now. Keep practicing noticing the dance between Head and Heart.",
+        },
+        trend: {
+          improved: '↑ Better than your last check-in',
+          declined: '↓ A bit lower than your last check-in',
+          same: '→ Same as your last check-in',
+          firstTime: 'This is your first Wheel of Life check-in',
+        },
+        practiceHeading: 'Where to focus next',
+        practiceIntro: 'This domain is asking for the most attention right now:',
+        practices: {
+          notNow: {
+            title: 'Try: Not Now',
+            description:
+              'Notice the pull toward distraction or scrolling, and practice pausing for 60 seconds before reacting.',
+          },
+          breathing: {
+            title: 'Try: Grounding Breath',
+            description:
+              'Place both hands on your body, take a few slow breaths, and let your system settle before moving on.',
+          },
+          headHeart: {
+            title: 'Try: Head & Heart Check',
+            description:
+              'Pause and notice which is leading right now — your thinking mind or your feeling heart — without judging either.',
+          },
+        },
+        finish: 'Return to Hub',
+      },
     },
     steps: [
       {
@@ -298,25 +381,70 @@ export const translations: Record<Language, Translations> = {
       finish: 'חזרה ללוח הבקרה',
     },
     wheelOfLife: {
-      title: 'גלגל החיים',
-      subtitle: 'דרג/י את מידת ההשקעה ורמת המצוקה בכל תחום חיים',
+      intro: {
+        title: 'גלגל החיים שלך',
+        description:
+          'זהו כלי למודעות, לא לשיפוטיות - אין דבר כזה גלגל מושלם. תדרג/י 8 תחומי חיים אחד אחרי השני, ובסוף תראה/י לאן האנרגיה שלך זורמת ולאן היא תקועה.',
+        cta: 'בוא נתחיל',
+      },
+      progress: 'תחום {current}/{total}',
       domains: {
         work: 'קריירה ועבודה',
         family: 'משפחה והורות',
         partnership: 'זוגיות',
         body: 'גוף ובריאות',
         leisure: 'פנאי ותחביבים',
-        spirituality: 'צמיחה אישית',
+        externalWorld: 'העולם שבחוץ',
         finances: 'פיננסים',
         community: 'קהילה וחברים',
       },
-      timeLabel: 'השקעת זמן',
-      distressLabel: 'רמת מצוקה (1-10)',
-      save: 'ראה את הגלגל שלי',
-      smoothness: 'איזון החיים: ',
-      smoothnessHigh: 'נסיעה חלקה 🎯',
-      smoothnessLow: 'נסיעה קופצנית ⚠️',
-      summary: 'גלגל החיים שלך מראה לאן האנרגיה זורמת ולאן היא תקועה.',
+      domainDescriptions: {
+        work: 'איך הקריירה או דרישות העבודה משפיעות על האנרגיה והריכוז שלך?',
+        family: 'כמה מאוזן/ת את/ה מרגיש/ה בתפקיד שלך כהורה או כבן/בת משפחה?',
+        partnership: 'כמה מאוזן/ת את/ה מרגיש/ה בתוך הזוגיות שלך?',
+        body: 'כמה מחובר ומטופל הגוף שלך מרגיש כרגע?',
+        leisure: 'כמה מקום את/ה נותן/ת לעצמך למנוחה, למשחק ולתחביבים?',
+        externalWorld:
+          'כמה מהאנרגיה שלך נבלעת על ידי הסביבה שמסביבך? חשוב/י על הנסיעות היומיות, התנועה בדרכים, וההשפעה של חדשות ואירועים אקטואליים על השלווה הפנימית שלך.',
+        finances: 'כמה הכסף והביטחון הכלכלי מעיבים על המחשבות שלך?',
+        community: 'כמה את/ה מרגיש/ה נתמך/ת על ידי חברים והקהילה שלך?',
+      },
+      sliderQuestion: 'כרגע, כמה מאוזן/ת את/ה מרגיש/ה בתחום הזה?',
+      sliderLowLabel: 'חוסר איזון',
+      sliderHighLabel: 'מאוזן לחלוטין',
+      back: 'הקודם',
+      seeResults: 'ראה/י את התוצאות שלי',
+      analysis: {
+        heading: 'מדד האיזון שלך',
+        tier: {
+          low: 'יש כרגע קונפליקט פנימי ממשי שמרחיק אותך מהמרכז שלך. תרגול מקרקע יכול לעזור להחזיר אותך לאיזון.',
+          moderate: 'יש לך מודעות למה שקורה, אבל אנרגיה דולפת איפשהו. המשיכ/י לשים לב לדפוסים שלך.',
+          high: 'את/ה במקום יציב ומאוזן כרגע. המשיכ/י לתרגל את שמירת העין על המחול שבין הראש ללב.',
+        },
+        trend: {
+          improved: '↑ טוב יותר מהבדיקה הקודמת שלך',
+          declined: '↓ קצת נמוך יותר מהבדיקה הקודמת שלך',
+          same: '→ זהה לבדיקה הקודמת שלך',
+          firstTime: 'זאת בדיקת גלגל החיים הראשונה שלך',
+        },
+        practiceHeading: 'לאן להפנות את המבט הבא',
+        practiceIntro: 'התחום שמבקש כרגע הכי הרבה תשומת לב הוא:',
+        practices: {
+          notNow: {
+            title: 'נסה/י: לא עכשיו',
+            description: 'שימ/י לב למשיכה להסחת דעת או לגלילה, ותרגל/י לעצור ל-60 שניות לפני שמגיבים.',
+          },
+          breathing: {
+            title: 'נסה/י: נשימת קרקוע',
+            description: 'הנח/י שתי ידיים על הגוף, נשמ/י כמה נשימות איטיות, ותני למערכת שלך להירגע לפני שממשיכים.',
+          },
+          headHeart: {
+            title: 'נסה/י: בדיקת ראש ולב',
+            description: 'עצור/י ושימ/י לב מי מוביל כרגע - הראש החושב או הלב המרגיש - בלי לשפוט אף אחד מהם.',
+          },
+        },
+        finish: 'חזרה ללוח הבקרה',
+      },
     },
     steps: [
       {
