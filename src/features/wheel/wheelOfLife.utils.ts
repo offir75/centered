@@ -15,8 +15,8 @@ export interface WheelHistoryEntry {
 
 export const DOMAIN_KEYS: WheelDomainKey[] = [
   'work',
-  'family',
   'partnership',
+  'family',
   'body',
   'leisure',
   'externalWorld',
@@ -63,11 +63,12 @@ const clamp = (value: number, min: number, max: number): number => Math.min(max,
 
 // Calculated entirely client-side (no network/AI call) so it stays instant, private, and free.
 // Inverted from the suffering scale: low average suffering => high balance score.
+// Rounds to the nearest 0.5 (not Math.ceil) so the result isn't biased upward.
 export const calculateBalanceScore = (scores: WheelScores): number => {
   const total = DOMAIN_KEYS.reduce((sum, key) => sum + scores[key].suffering, 0);
   const averageSuffering = total / DOMAIN_KEYS.length;
-  const inverted = clamp(11 - averageSuffering, 1, 10);
-  return Math.ceil(inverted * 2) / 2;
+  const inverted = 11 - averageSuffering;
+  return clamp(Math.round(inverted * 2) / 2, 1, 10);
 };
 
 export const getMostSufferingDomain = (scores: WheelScores): WheelDomainKey => {

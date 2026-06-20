@@ -12,12 +12,24 @@ const SIZE = 320;
 const CENTER = SIZE / 2;
 const HUB_RADIUS = 16;
 const OUTER_RADIUS = 110;
-const LABEL_RADIUS = OUTER_RADIUS + 30;
+// Alternating radii keep adjacent labels from colliding around the rim.
+const LABEL_RADIUS_NEAR = OUTER_RADIUS + 25;
+const LABEL_RADIUS_FAR = OUTER_RADIUS + 45;
+const MAX_LABEL_CHARS_PER_LINE = 10;
 
 const polarToCartesian = (radius: number, angle: number): { x: number; y: number } => ({
   x: CENTER + radius * Math.cos(angle),
   y: CENTER + radius * Math.sin(angle),
 });
+
+// Greedily splits a multi-word label into two roughly-even lines so long domain
+// names (e.g. "פנאי ותחביבים") don't bleed past the wheel's rim.
+const splitLabel = (label: string): string[] => {
+  const words = label.split(' ');
+  if (words.length < 2 || label.length <= MAX_LABEL_CHARS_PER_LINE) return [label];
+  const mid = Math.ceil(words.length / 2);
+  return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
+};
 
 // Builds an annular-sector ("donut slice") path between innerR and outerR, startAngle to endAngle (radians).
 const arcPath = (startAngle: number, endAngle: number, innerR: number, outerR: number): string => {
@@ -47,9 +59,11 @@ export const WheelResult: React.FC<WheelResultProps> = ({ locale, scores }) => {
 
     const filledRadius = HUB_RADIUS + (OUTER_RADIUS - HUB_RADIUS) * (score.suffering / 10);
     const midAngle = (startAngle + endAngle) / 2;
-    const labelPos = polarToCartesian(LABEL_RADIUS, midAngle);
+    const labelRadius = index % 2 === 0 ? LABEL_RADIUS_NEAR : LABEL_RADIUS_FAR;
+    const labelPos = polarToCartesian(labelRadius, midAngle);
     const cos = Math.cos(midAngle);
     const textAnchor: 'start' | 'middle' | 'end' = cos > 0.25 ? 'start' : cos < -0.25 ? 'end' : 'middle';
+    const labelLines = splitLabel(t.domains[key as WheelDomainKey]);
 
     return {
       key,
@@ -58,6 +72,7 @@ export const WheelResult: React.FC<WheelResultProps> = ({ locale, scores }) => {
       color: getSufferingColor(score.suffering),
       labelPos,
       textAnchor,
+      labelLines,
     };
   });
 
@@ -76,18 +91,26 @@ export const WheelResult: React.FC<WheelResultProps> = ({ locale, scores }) => {
           <path key={`${slice.key}-fill`} d={slice.fillPath} fill={slice.color} stroke="#ffffff" strokeWidth={2} />
         ))}
         <circle cx={CENTER} cy={CENTER} r={HUB_RADIUS} className={styles.hub} />
-        {slices.map((slice) => (
-          <text
-            key={`${slice.key}-label`}
-            x={slice.labelPos.x}
-            y={slice.labelPos.y}
-            textAnchor={slice.textAnchor}
-            dominantBaseline="middle"
-            className={styles.sliceLabel}
-          >
-            {t.domains[slice.key as WheelDomainKey]}
-          </text>
-        ))}
+        {slices.map((slice) => {
+          const lineCount = slice.labelLines.length;
+          const startDy = -((lineCount - 1) / 2) * 1.1;
+          return (
+            <text
+              key={`${slice.key}-label`}
+              x={slice.labelPos.x}
+              y={slice.labelPos.y}
+              textAnchor={slice.textAnchor}
+              dominantBaseline="middle"
+              className={styles.sliceLabel}
+            >
+              {slice.labelLines.map((line, lineIndex) => (
+                <tspan key={lineIndex} x={slice.labelPos.x} dy={lineIndex === 0 ? `${startDy}em` : '1.1em'}>
+                  {line}
+                </tspan>
+              ))}
+            </text>
+          );
+        })}
       </svg>
     </div>
   );

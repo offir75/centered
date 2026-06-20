@@ -75,6 +75,7 @@
   color: #4a5568;
   line-height: 1.5;
   text-align: start;
+  white-space: pre-line;
   margin: 0 0 0.25rem 0;
 }
 
