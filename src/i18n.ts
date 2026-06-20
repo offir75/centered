@@ -96,9 +96,18 @@ export type Translations = {
     progress: string;
     domains: Record<WheelDomainKey, string>;
     domainDescriptions: Record<WheelDomainKey, string>;
-    sliderQuestion: string;
-    sliderLowLabel: string;
-    sliderHighLabel: string;
+    time: {
+      title: string;
+      subtext: string;
+      lowLabel: string;
+      highLabel: string;
+    };
+    suffering: {
+      title: string;
+      subtext: string;
+      lowLabel: string;
+      highLabel: string;
+    };
     back: string;
     seeResults: string;
     analysis: {
@@ -114,6 +123,7 @@ export type Translations = {
         same: string;
         firstTime: string;
       };
+      wheelCaption: string;
       practiceHeading: string;
       practiceIntro: string;
       practices: {
@@ -211,9 +221,18 @@ export const translations: Record<Language, Translations> = {
         finances: 'How much does money and financial security weigh on your mind?',
         community: 'How supported do you feel by your friends and community?',
       },
-      sliderQuestion: 'Right now, how balanced do you feel in this area?',
-      sliderLowLabel: 'Off balance',
-      sliderHighLabel: 'Fully centered',
+      time: {
+        title: 'Time & Energy Investment',
+        subtext: '1 = Almost no time/energy spent, 10 = Consumes most of my waking hours/energy',
+        lowLabel: 'Barely any',
+        highLabel: 'Consumes my day',
+      },
+      suffering: {
+        title: 'Suffering / Distress Level',
+        subtext: '1 = No suffering / Inner peace, 10 = Maximum suffering / Agony',
+        lowLabel: 'No suffering',
+        highLabel: 'Max suffering',
+      },
       back: 'Back',
       seeResults: 'See My Results',
       analysis: {
@@ -229,6 +248,7 @@ export const translations: Record<Language, Translations> = {
           same: '→ Same as your last check-in',
           firstTime: 'This is your first Wheel of Life check-in',
         },
+        wheelCaption: 'Slice width = time & energy invested. Color and depth = suffering level.',
         practiceHeading: 'Where to focus next',
         practiceIntro: 'This domain is asking for the most attention right now:',
         practices: {
@@ -409,9 +429,18 @@ export const translations: Record<Language, Translations> = {
         finances: 'כמה הכסף והביטחון הכלכלי מעיבים על המחשבות שלך?',
         community: 'כמה את/ה מרגיש/ה נתמך/ת על ידי חברים והקהילה שלך?',
       },
-      sliderQuestion: 'כרגע, כמה מאוזן/ת את/ה מרגיש/ה בתחום הזה?',
-      sliderLowLabel: 'חוסר איזון',
-      sliderHighLabel: 'מאוזן לחלוטין',
+      time: {
+        title: 'השקעת זמן ואנרגיה',
+        subtext: '1 = כמעט ולא משקיע/ה זמן או אנרגיה, 10 = צורך את רוב שעות הערות והאנרגיה שלי',
+        lowLabel: 'כמעט לא',
+        highLabel: 'תופס את כל היום',
+      },
+      suffering: {
+        title: 'רמת סבל / מצוקה',
+        subtext: '1 = אין סבל / שלווה פנימית, 10 = סבל מקסימלי / יגון',
+        lowLabel: 'ללא סבל',
+        highLabel: 'סבל מקסימלי',
+      },
       back: 'הקודם',
       seeResults: 'ראה/י את התוצאות שלי',
       analysis: {
@@ -427,6 +456,7 @@ export const translations: Record<Language, Translations> = {
           same: '→ זהה לבדיקה הקודמת שלך',
           firstTime: 'זאת בדיקת גלגל החיים הראשונה שלך',
         },
+        wheelCaption: 'רוחב הפלח = זמן ואנרגיה שהושקעו. הצבע והעומק = רמת הסבל.',
         practiceHeading: 'לאן להפנות את המבט הבא',
         practiceIntro: 'התחום שמבקש כרגע הכי הרבה תשומת לב הוא:',
         practices: {

@@ -39,139 +39,6 @@
   padding: 1rem 0;
 }
 
-/* Domain Step Screen */
-.domainScreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.progressBar {
-  display: flex;
-  gap: 0.4rem;
-  width: 100%;
-}
-
-.progressSegment {
-  flex: 1;
-  height: 6px;
-  border-radius: 3px;
-  background: #e2e8f0;
-  transition: background 0.2s ease;
-}
-
-.progressSegment--filled {
-  background: #2d3748;
-}
-
-.progressLabel {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #718096;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 0 0 0.5rem 0;
-}
-
-.domainIcon {
-  font-size: 2.5rem;
-  line-height: 1;
-}
-
-.domainTitle {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin: 0;
-  text-align: center;
-}
-
-.domainDescription {
-  font-size: 0.95rem;
-  color: #4a5568;
-  line-height: 1.5;
-  text-align: center;
-  margin: 0 0 0.5rem 0;
-}
-
-.sliderCard {
-  width: 100%;
-  background: #ffffff;
-  padding: 1.25rem;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.sliderQuestion {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.sliderWrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.slider {
-  flex: 1;
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(to right, #cbd5e0, #a0aec0);
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  min-height: 48px;
-  padding: 0;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #2d3748;
-  cursor: grab;
-  box-shadow: 0 2px 8px rgba(45, 55, 72, 0.3);
-}
-
-.slider::-moz-range-thumb {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #2d3748;
-  cursor: grab;
-  border: none;
-  box-shadow: 0 2px 8px rgba(45, 55, 72, 0.3);
-}
-
-.sliderValue {
-  min-width: 3rem;
-  padding: 0.5rem 0.75rem;
-  background: #edf2f7;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #2d3748;
-  text-align: center;
-  border: 1px solid #cbd5e0;
-}
-
-.sliderLabels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: #718096;
-}
-
 /* Analysis Screen */
 .analysisScreen {
   display: flex;
@@ -202,40 +69,11 @@
   margin: 0;
 }
 
-.domainBars {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
-}
-
-.domainBarRow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.domainBarLabel {
-  flex: 0 0 38%;
+.wheelCaption {
   font-size: 0.8rem;
-  color: #4a5568;
-  font-weight: 600;
-}
-
-.domainBarTrack {
-  flex: 1;
-  height: 10px;
-  border-radius: 5px;
-  background: #e2e8f0;
-  overflow: hidden;
-}
-
-.domainBarFill {
-  height: 100%;
-  background: linear-gradient(to right, #4a5568, #2d3748);
-  border-radius: 5px;
-  transition: width 0.3s ease;
+  color: #718096;
+  text-align: center;
+  margin: 0;
 }
 
 .practiceCard {
@@ -371,10 +209,5 @@
 
   .title {
     font-size: 1.3rem;
-  }
-
-  .domainBarLabel {
-    flex: 0 0 32%;
-    font-size: 0.75rem;
   }
 }

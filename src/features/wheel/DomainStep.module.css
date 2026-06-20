@@ -1,0 +1,229 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progressBar {
+  display: flex;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.progressSegment {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  transition: background 0.2s ease;
+}
+
+.progressSegment--filled {
+  background: #2d3748;
+}
+
+.progressLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem 0;
+}
+
+.domainIcon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.domainTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+  text-align: center;
+}
+
+.domainDescription {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+}
+
+.sliderCard {
+  width: 100%;
+  background: #ffffff;
+  padding: 1.25rem;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sliderHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.sliderTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.sliderValueBadge {
+  min-width: 2.75rem;
+  padding: 0.4rem 0.65rem;
+  background: #edf2f7;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #2d3748;
+  text-align: center;
+  border: 1px solid #cbd5e0;
+}
+
+.sliderSubtext {
+  font-size: 0.78rem;
+  color: #718096;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  min-height: 48px;
+  padding: 0;
+}
+
+.sliderTime {
+  background: linear-gradient(to right, #cbd5e0, #a0aec0);
+}
+
+.sliderTime::-webkit-slider-thumb {
+  background: #4a5568;
+}
+
+.sliderTime::-moz-range-thumb {
+  background: #4a5568;
+}
+
+.sliderSuffering {
+  /* Forced LTR regardless of page language so the green->red gradient and
+     edge labels stay physically left-to-right, matching the suffering scale spec. */
+  direction: ltr;
+  background: linear-gradient(to right, hsl(120, 70%, 45%), hsl(60, 70%, 45%), hsl(0, 70%, 45%));
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--thumb-color, #2d3748);
+  cursor: grab;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--thumb-color, #2d3748);
+  cursor: grab;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.sliderEdgeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #718096;
+}
+
+.sliderEdgeLabelsSuffering {
+  /* Forced LTR to match the suffering track, which is also forced LTR so its
+     green (left, low) -> red (right, high) gradient stays physically fixed. */
+  direction: ltr;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.primaryButton {
+  width: 100%;
+  min-height: 64px;
+  background: #2d3748;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 12px rgba(45, 55, 72, 0.2);
+}
+
+.primaryButton:active {
+  transform: scale(0.98);
+  background: #1a202c;
+}
+
+.primaryButton:hover {
+  background: #1a202c;
+}
+
+.secondaryButton {
+  width: 100%;
+  min-height: 56px;
+  background: transparent;
+  color: #718096;
+  border: 1px solid #cbd5e0;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.secondaryButton:active {
+  background: #f7fafc;
+  color: #4a5568;
+}
+
+.secondaryButton:hover {
+  background: #f7fafc;
+  color: #4a5568;
+}
+
+@media (max-width: 640px) {
+  .primaryButton {
+    min-height: 56px;
+    font-size: 0.95rem;
+  }
+
+  .secondaryButton {
+    min-height: 52px;
+    font-size: 0.95rem;
+  }
+}
