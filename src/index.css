@@ -1,0 +1,205 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+
+:root {
+  --bg-color: #f7f9fa;
+  --text-color: #2c3e50;
+  --primary-color: #8e44ad;
+  --primary-color-hover: #9b59b6;
+  --surface-color: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --fire-color: 230, 126, 34;
+  --water-color: 52, 152, 219;
+  --air-color: 189, 195, 199;
+  --earth-color: 39, 174, 96;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Assistant', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  direction: rtl;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+body[dir='ltr'] {
+  direction: ltr;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 450px;
+  padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 10px;
+}
+
+.app-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+}
+
+.dashboard-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.dashboard-hero h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-hero p {
+  color: #566573;
+  line-height: 1.6;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.game-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  min-height: 110px;
+  width: 100%;
+  text-align: left;
+}
+
+.game-card-primary {
+  background: linear-gradient(135deg, rgba(142, 68, 173, 0.95), rgba(142, 68, 173, 0.75));
+  color: white;
+  border-color: transparent;
+}
+
+.game-card-primary:hover {
+  transform: translateY(-1px);
+}
+
+.game-card-disabled {
+  background: #f6f7f9;
+  color: #7f8c8d;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.card-icon {
+  font-size: 1.9rem;
+  line-height: 1;
+  width: 38px;
+  text-align: center;
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.language-switcher span {
+  font-size: 0.9rem;
+  color: #566573;
+}
+
+.language-switcher button {
+  font-size: 0.85rem;
+  padding: 10px 14px;
+}
+
+.btn-secondary.active,
+.btn-secondary.active:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: transparent;
+}
+
+@keyframes softPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: softPulse 2s infinite ease-in-out;
+}
+
+.wizard-progress {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 16px 24px 0;
+}
+
+.wizard-progress-segment {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.wizard-progress-segment.filled {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scaleY(1.05);
+}
+
+@media (max-width: 450px) {
+  .dashboard-hero h1 {
+    font-size: 1.55rem;
+  }
+
+  .game-card {
+    padding: 16px;
+  }
+
+  .home-button {
+    padding: 0 12px;
+  }
+}

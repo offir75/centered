@@ -1,0 +1,35 @@
+.hamburger-menu {
+  position: relative;
+}
+
+.hamburger-button {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.hamburger-panel {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 220px;
+  background: var(--surface-color, #ffffff);
+  box-shadow: 0 8px 20px var(--shadow-color, rgba(0,0,0,0.12));
+  border-radius: 12px;
+  padding: 12px;
+  z-index: 60;
+}
+
+.menu-title {
+  font-size: 0.9rem;
+  color: #566573;
+  margin-bottom: 8px;
+}
+
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
