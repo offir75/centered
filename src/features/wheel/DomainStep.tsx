@@ -74,7 +74,7 @@ export const DomainStep: React.FC<DomainStepProps> = ({
           step="0.5"
           value={score.time}
           onChange={(e) => onChangeTime(Number(e.target.value))}
-          className={`${styles.slider} ${styles.sliderTime}`}
+          className={`${styles.slider} ${isRtl ? styles['sliderTime--rtl'] : styles['sliderTime--ltr']}`}
           aria-label={`${t.domains[domain]} - ${t.time.title}`}
         />
         <div className={styles.sliderEdgeLabels}>

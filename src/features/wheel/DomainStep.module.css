@@ -126,6 +126,7 @@
   width: 100%;
   height: 8px;
   border-radius: 4px;
+  border: 1px solid #e2e8f0;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
@@ -134,8 +135,14 @@
   padding: 0;
 }
 
-.sliderTime {
-  background: linear-gradient(to right, #d6bcfa, #6b46c1);
+/* White at the "1" anchor, full purple at the "10" anchor — flipped per direction
+   so the intensity always reads low-to-high in the same way the thumb travels. */
+.sliderTime--ltr {
+  background: linear-gradient(to right, #ffffff, #6b46c1);
+}
+
+.sliderTime--rtl {
+  background: linear-gradient(to left, #ffffff, #6b46c1);
 }
 
 .sliderTime::-webkit-slider-thumb {
