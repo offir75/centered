@@ -54,12 +54,45 @@ export const DomainStep: React.FC<DomainStepProps> = ({
       <button
         type="button"
         className={styles.howToAnswerButton}
-        onClick={() => setShowLongDescription((v) => !v)}
-        aria-expanded={showLongDescription}
+        onClick={() => setShowLongDescription(true)}
+        aria-haspopup="dialog"
       >
         {t.howToAnswer}
       </button>
-      {showLongDescription && <p className={styles.howToAnswerContent}>{description.long}</p>}
+
+      {showLongDescription && (
+        <div className={styles.modalOverlay} onClick={() => setShowLongDescription(false)}>
+          <div
+            className={styles.modalCard}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t.howToAnswer}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>{t.howToAnswer}</h3>
+              <button
+                type="button"
+                className={styles.modalCloseButton}
+                onClick={() => setShowLongDescription(false)}
+                aria-label={t.close}
+              >
+                ✕
+              </button>
+            </div>
+            <div className={styles.modalBody}>
+              <p className={styles.modalText}>{description.long}</p>
+            </div>
+            <button
+              type="button"
+              className={styles.modalCloseFooterButton}
+              onClick={() => setShowLongDescription(false)}
+            >
+              {t.close}
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className={styles.sliderCard}>
         <div className={styles.sliderHeader}>

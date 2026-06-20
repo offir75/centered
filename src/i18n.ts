@@ -97,6 +97,7 @@ export type Translations = {
     domains: Record<WheelDomainKey, string>;
     domainDescriptions: Record<WheelDomainKey, { short: string; long: string }>;
     howToAnswer: string;
+    close: string;
     time: {
       title: string;
       subtext: string;
@@ -248,6 +249,7 @@ export const translations: Record<Language, Translations> = {
         },
       },
       howToAnswer: 'How should I answer?',
+      close: 'Close',
       time: {
         title: 'Time & Energy Investment',
         subtext: '1 = Almost no time/energy spent, 10 = Consumes most of my waking hours/energy',
@@ -480,6 +482,7 @@ export const translations: Record<Language, Translations> = {
         },
       },
       howToAnswer: 'איך לענות?',
+      close: 'סגירה',
       time: {
         title: 'השקעת זמן ואנרגיה',
         subtext: '1 = כמעט ולא משקיע/ה זמן או אנרגיה, 10 = צורך את רוב שעות הערות והאנרגיה שלי',
