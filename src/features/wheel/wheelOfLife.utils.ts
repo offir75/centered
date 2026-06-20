@@ -63,12 +63,16 @@ const clamp = (value: number, min: number, max: number): number => Math.min(max,
 
 // Calculated entirely client-side (no network/AI call) so it stays instant, private, and free.
 // Inverted from the suffering scale: low average suffering => high balance score.
-// Rounds to the nearest 0.5 (not Math.ceil) so the result isn't biased upward.
+// Calibrated so suffering=1 (best) maps to balance=10, AND suffering=5 (the
+// slider's neutral default) maps to balance=5 - a plain "11 - average" mirror
+// would instead send 5 to 6, since 5.5 (not 5) is the true center of a 1-10
+// scale. Slope is fixed by those two points; high-suffering averages (~8.2+)
+// bottom out at the floor and get clamped to 1.
 export const calculateBalanceScore = (scores: WheelScores): number => {
   const total = DOMAIN_KEYS.reduce((sum, key) => sum + scores[key].suffering, 0);
   const averageSuffering = total / DOMAIN_KEYS.length;
-  const inverted = 11 - averageSuffering;
-  return clamp(Math.round(inverted * 2) / 2, 1, 10);
+  const raw = 10 - 1.25 * (averageSuffering - 1);
+  return clamp(Math.round(raw * 2) / 2, 1, 10);
 };
 
 export const getMostSufferingDomain = (scores: WheelScores): WheelDomainKey => {
