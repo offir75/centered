@@ -6,16 +6,19 @@ import { DOMAIN_KEYS, getSufferingColor, type WheelScores } from './wheelOfLife.
 interface WheelResultProps {
   locale: Translations;
   scores: WheelScores;
+  isRtl: boolean;
 }
 
-const SIZE = 320;
+const SIZE = 360;
 const CENTER = SIZE / 2;
 const HUB_RADIUS = 16;
-const OUTER_RADIUS = 110;
+const OUTER_RADIUS = 100;
 // Alternating radii keep adjacent labels from colliding around the rim.
-const LABEL_RADIUS_NEAR = OUTER_RADIUS + 25;
-const LABEL_RADIUS_FAR = OUTER_RADIUS + 45;
+const LABEL_RADIUS_NEAR = OUTER_RADIUS + 30;
+const LABEL_RADIUS_FAR = OUTER_RADIUS + 55;
 const MAX_LABEL_CHARS_PER_LINE = 10;
+const LABEL_FONT_SIZE_PX = 13;
+const LABEL_LINE_HEIGHT_PX = LABEL_FONT_SIZE_PX * 1.2;
 
 const polarToCartesian = (radius: number, angle: number): { x: number; y: number } => ({
   x: CENTER + radius * Math.cos(angle),
@@ -41,7 +44,7 @@ const arcPath = (startAngle: number, endAngle: number, innerR: number, outerR: n
   return `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y} A ${outerR} ${outerR} 0 ${largeArc} 1 ${p3.x} ${p3.y} L ${p4.x} ${p4.y} A ${innerR} ${innerR} 0 ${largeArc} 0 ${p1.x} ${p1.y} Z`;
 };
 
-export const WheelResult: React.FC<WheelResultProps> = ({ locale, scores }) => {
+export const WheelResult: React.FC<WheelResultProps> = ({ locale, scores, isRtl }) => {
   const t = locale.wheelOfLife;
   const totalTime = DOMAIN_KEYS.reduce((sum, key) => sum + scores[key].time, 0);
 
@@ -91,26 +94,25 @@ export const WheelResult: React.FC<WheelResultProps> = ({ locale, scores }) => {
           <path key={`${slice.key}-fill`} d={slice.fillPath} fill={slice.color} stroke="#ffffff" strokeWidth={2} />
         ))}
         <circle cx={CENTER} cy={CENTER} r={HUB_RADIUS} className={styles.hub} />
-        {slices.map((slice) => {
-          const lineCount = slice.labelLines.length;
-          const startDy = -((lineCount - 1) / 2) * 1.1;
-          return (
-            <text
-              key={`${slice.key}-label`}
-              x={slice.labelPos.x}
-              y={slice.labelPos.y}
-              textAnchor={slice.textAnchor}
-              dominantBaseline="middle"
-              className={styles.sliceLabel}
-            >
-              {slice.labelLines.map((line, lineIndex) => (
-                <tspan key={lineIndex} x={slice.labelPos.x} dy={lineIndex === 0 ? `${startDy}em` : '1.1em'}>
-                  {line}
-                </tspan>
-              ))}
-            </text>
-          );
-        })}
+        {slices.map((slice) =>
+          slice.labelLines.map((line, lineIndex) => {
+            const lineCount = slice.labelLines.length;
+            const offset = (lineIndex - (lineCount - 1) / 2) * LABEL_LINE_HEIGHT_PX;
+            return (
+              <text
+                key={`${slice.key}-label-${lineIndex}`}
+                x={slice.labelPos.x}
+                y={slice.labelPos.y + offset}
+                textAnchor={slice.textAnchor}
+                dominantBaseline="middle"
+                direction={isRtl ? 'rtl' : 'ltr'}
+                className={styles.sliceLabel}
+              >
+                {line}
+              </text>
+            );
+          })
+        )}
       </svg>
     </div>
   );

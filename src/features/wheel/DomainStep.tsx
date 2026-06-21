@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './DomainStep.module.css';
 import type { Translations, WheelDomainKey } from '../../i18n';
 import { DOMAIN_ICONS, formatScore, getSufferingColor, type DomainScore } from './wheelOfLife.utils';
@@ -34,6 +34,16 @@ export const DomainStep: React.FC<DomainStepProps> = ({
   const [showLongDescription, setShowLongDescription] = useState(false);
   const progressText = t.progress.replace('{current}', String(domainIndex + 1)).replace('{total}', String(totalDomains));
   const description = t.domainDescriptions[domain];
+
+  useEffect(() => {
+    if (!showLongDescription) return;
+    const scrollContainer = document.querySelector<HTMLElement>('.app-content');
+    const previousOverflow = scrollContainer?.style.overflow ?? '';
+    if (scrollContainer) scrollContainer.style.overflow = 'hidden';
+    return () => {
+      if (scrollContainer) scrollContainer.style.overflow = previousOverflow;
+    };
+  }, [showLongDescription]);
 
   return (
     <section className={styles.screen}>

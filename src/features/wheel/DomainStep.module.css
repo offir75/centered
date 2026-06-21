@@ -66,20 +66,21 @@
 }
 
 .modalOverlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: rgba(26, 32, 44, 0.55);
+  background: rgba(26, 32, 44, 0.65);
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  z-index: 50;
+  z-index: 200;
 }
 
 .modalCard {
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  inset: 10px;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 4px solid #6b46c1;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   overflow: hidden;

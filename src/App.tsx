@@ -44,6 +44,7 @@ const App: React.FC = function() {
         </div>
       </header>
 
+      <main className="app-content">
       {activeView === 'home' ? (
         <section className="dashboard-screen">
           <div className="dashboard-hero">
@@ -93,6 +94,7 @@ const App: React.FC = function() {
       ) : (
         <WheelOfLife currentLang={language} locale={locale} onFinish={goHome} onCancel={goHome} />
       )}
+      </main>
     </div>
   );
 };

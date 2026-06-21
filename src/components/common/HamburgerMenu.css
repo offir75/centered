@@ -13,8 +13,9 @@
 .hamburger-panel {
   position: absolute;
   top: 46px;
-  right: 0;
+  inset-inline-end: 0;
   width: 220px;
+  max-width: calc(100vw - 32px);
   background: var(--surface-color, #ffffff);
   box-shadow: 0 8px 20px var(--shadow-color, rgba(0,0,0,0.12));
   border-radius: 12px;

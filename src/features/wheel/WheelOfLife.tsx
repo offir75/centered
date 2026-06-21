@@ -119,7 +119,7 @@ export const WheelOfLife: React.FC<WheelOfLifeProps> = ({ currentLang, locale, o
           <p className={styles.tierText}>{t.analysis.tier[tier]}</p>
           <p className={styles.trendText}>{t.analysis.trend[trend]}</p>
 
-          <WheelResult locale={locale} scores={result.scores} />
+          <WheelResult locale={locale} scores={result.scores} isRtl={isRtl} />
           <p className={styles.wheelCaption}>{t.analysis.wheelCaption}</p>
 
           <div className={styles.practiceCard}>

@@ -19,10 +19,14 @@
   padding: 0;
 }
 
+html {
+  font-size: 112.5%;
+}
+
 html,
 body,
 #root {
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
@@ -31,10 +35,9 @@ body {
   color: var(--text-color);
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   direction: rtl;
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100vw;
 }
 
@@ -46,21 +49,33 @@ body[dir='ltr'] {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .app-shell {
   width: 100%;
   max-width: 450px;
-  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
   gap: 10px;
+  padding: 16px 16px 14px;
+  background-color: var(--bg-color);
+  position: relative;
+  z-index: 40;
+}
+
+.app-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 16px 16px;
 }
 
 .app-title {
